@@ -1,0 +1,37 @@
+.bg-login {
+  background: #141d24;
+  height: 100%;
+}
+.logo {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+.logo-txt {
+  color: #79868c;
+  position: absolute;
+  top: 49%;
+  right: 0;
+  width: 243px;
+}
+
+.login-heading {
+  color: #6a757c;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.login-form {
+  padding: 0 5.5rem;
+}
+
+a {
+  color: rgb(63, 63, 174) !important;
+  font-size: 12px;
+}
+
+.border-login {
+  border-right: 2px solid #c5c5c5;
+}
+

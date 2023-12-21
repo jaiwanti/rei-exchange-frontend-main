@@ -1,0 +1,80 @@
+.search-input .search-icon {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-border {
+    border: 1px solid #8b8e93;
+  }
+  
+  .bg-0 {
+    background: none;
+  }
+  
+  .mat-mdc-slide-toggle.mat-accent {
+    --mdc-switch-selected-focus-state-layer-color: #495f39;
+    --mdc-switch-selected-handle-color: #495f39;
+    --mdc-switch-selected-hover-state-layer-color: #495f39;
+    --mdc-switch-selected-pressed-state-layer-color: #495f39;
+    --mdc-switch-selected-focus-handle-color: #495f39;
+    --mdc-switch-selected-hover-handle-color: #495f39;
+    --mdc-switch-selected-pressed-handle-color: #495f39;
+    --mdc-switch-selected-focus-track-color: #eaeaea;
+    --mdc-switch-selected-hover-track-color: #eaeaea;
+    --mdc-switch-selected-pressed-track-color: #eaeaea;
+    --mdc-switch-selected-track-color: #eaeaea;
+  }
+  
+  .pagination-table {
+    ::ng-deep .mat-mdc-slide-toggle .mdc-switch {
+      width: 75px;
+    }
+    ::ng-deep .mat-mdc-slide-toggle .mdc-switch .mdc-switch__track {
+      height: 27px !important;
+      border-radius: 15px !important;
+      border: 1px solid #27a643;
+    }
+    ::ng-deep .mat-mdc-slide-toggle .mdc-switch:enabled .mdc-switch__shadow {
+      background-color: #27a643;
+    }
+    ::ng-deep .mdc-switch__handle {
+      left: 4px !important;
+    }
+    ::ng-deep .mat-mdc-slide-toggle .mdc-switch .mdc-switch__handle-track {
+      width: calc(88% - var(--mdc-switch-handle-width, 28px)) !important;
+    }
+    
+  }
+  
+  thead , th {
+    white-space: nowrap;
+    color: #fff;
+    background-color: #43484e !important;
+    font-family: 'f-medium';
+  }
+  
+  table{
+    border: 1px solid #43484e42;
+  }
+  .even_rows{
+    background-color: #f5f5f5;
+  }
+  .bg-grey{
+    color: grey;
+  }
+  
+  .red{
+    color: #fff;
+    background-color: #d50e15;
+    padding: 4px 8px;
+    border-radius: 5px;
+  }
+  
+  .green{
+    color: #27a643;
+  }

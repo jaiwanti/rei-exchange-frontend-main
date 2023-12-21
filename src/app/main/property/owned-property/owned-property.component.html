@@ -1,0 +1,388 @@
+<div class="container py-2 ">
+  <div class="d-flex flex-md-row flex-column align-items-center">
+    <span class="main-heading secondary-color f-medium mt-2">
+      <a routerLink="/portal/property/property" routerLinkActive="active">
+        <i class="fa fa-arrow-left secondary-color mt-4"> Back
+        </i>
+      </a>
+      <br>
+      <!-- Owned Property <br> -->
+      <span class="main-heading L3BlXeVIU  mt-4">{{this.mainHeading}}</span>
+      <span class="main-heading small-size"> {{this.subHeading}}</span>
+    </span>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-md-11 mb-2 mb-md-0">
+      <mat-tab-group [color]="'primary'">
+        <mat-tab label="Property">
+          <form [formGroup]="propertyForm" class="py-3">
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Street Address</mat-label>
+                  <input matInput formControlName="street_address" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>LLC</mat-label>
+                  <mat-select formControlName="intended_id" disableRipple>
+                    <mat-option *ngFor="let element of intended" [value]="element.id">
+                      {{element.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Condition Rating</mat-label>
+                  <mat-select formControlName="intended_id" disableRipple>
+                    <mat-option *ngFor="let element of intended" [value]="element.id">
+                      {{element.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Purchase Price</mat-label>
+                  <input matInput formControlName="purchase_price" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3 col-md-6 col-lg-6 ckeditor">
+                <h6 class="secondary-color">Property Notes:</h6>
+                <ckeditor [(ngModel)]="content" [config]="config" [readonly]="false" debounce="500">
+                </ckeditor>
+              </div>
+              <div class="col-sm-9 col-md-6 col-lg-6 my-2">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Status:</mat-label>
+                      <mat-select formControlName="status" disableRipple>
+                        <mat-option *ngFor="let element of intended" [value]="element.id">
+                          {{element.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Since:</mat-label>
+                      <input matInput [matDatepicker]="picker" formControlName="since_date">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row my-3">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Term:</mat-label>
+                      <mat-select formControlName="term" disableRipple>
+                        <mat-option *ngFor="let element of intended" [value]="element.id">
+                          {{element.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Renewal Date:</mat-label>
+                      <input matInput [matDatepicker]="picker1" formControlName="renewal_date">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Monthly Rent:</mat-label>
+                      <input matInput formControlName="monthly_rent" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Current</mat-label>
+                      <input matInput [matDatepicker]="picker2" formControlName="current_date">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </mat-tab>
+
+        <mat-tab label="Rent">
+          <form [formGroup]="rentForm" class="py-3">
+            <div class="row">
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Status:</mat-label>
+                  <mat-select formControlName="status" disableRipple>
+                    <mat-option *ngFor="let element of intended" [value]="element.id">
+                      {{element.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Since:</mat-label>
+                  <input matInput [matDatepicker]="picker3" formControlName="since_date">
+                  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                  <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Since:</mat-label>
+                  <input matInput [matDatepicker]="picker4" formControlName="since_date">
+                  <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                  <mat-datepicker #picker4></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <button mat-button>GO TO PAYMENT CENTER</button>
+              </div>
+              <div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Term:</mat-label>
+                      <input matInput [matDatepicker]="picker5" formControlName="term">
+                      <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                      <mat-datepicker #picker5></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>RenewalDate :</mat-label>
+                      <input matInput [matDatepicker]="picker6" formControlName="renewal_date">
+                      <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                      <mat-datepicker #picker6></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Tennant:</mat-label>
+                      <input matInput formControlName="tennant" required>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Monthly Rent:</mat-label>
+                      <input matInput formControlName="Monthly_rent" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Current:</mat-label>
+                      <mat-select formControlName="current_date" disableRipple>
+                        <mat-option *ngFor="let element of intended" [value]="element.id">
+                          {{element.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Phone Number:</mat-label>
+                      <input matInput formControlName="phone_number" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Email Addresss:</mat-label>
+                      <input matInput formControlName="email_address" required>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-9 col-md-6 col-lg-6 ">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Deposit Paid:</mat-label>
+                          <input matInput formControlName="desposit_paid" required>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                          <mat-label>on:</mat-label>
+                          <input matInput [matDatepicker]="picker7" formControlName="on">
+                          <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                          <mat-datepicker #picker7></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row ">
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Pet Deposit Paid:</mat-label>
+                          <input matInput formControlName="desposit_paid" required>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                          <mat-label>on:</mat-label>
+                          <input matInput [matDatepicker]="picker8" formControlName="on">
+                          <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+                          <mat-datepicker #picker8></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 my-1">
+
+                    <app-documents-needs [documentsNeeds]="rentDocumentsNeeds"></app-documents-needs>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          </mat-tab>
+          <mat-tab label="Photos">
+            <form [formGroup]="photoForm"class="py-3">
+              <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-4 my-2">
+
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-8 my-2">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Photo Title</mat-label>
+                        <input  matInput formControlName="Photo_Title" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-12">
+
+                    </div>
+                  </div>
+                </div>
+              <div>
+          </div>
+          </div>
+        </form>
+       </mat-tab>
+          <mat-tab label="Vendors"> <div class="container py-3">
+            <div class="d-flex flex-md-row flex-column justify-content-between align-items-center">
+              <div class="main-heading mt-3 f-medium">
+                Portfolio
+                <span class="ms-2 underlined f-14 secondary-color cursor-pointer">
+                  <a routerLink="/portal/property/add-property" routerLinkActive="active">
+                    Add Property
+                  </a></span>
+              </div>
+            </div>
+            <div class="col mb-2 mb-md-0 d-flex align-items-center ms-5">
+            </div>
+            <div class="row align-items-center my-2">
+              <div class="d-flex justify-content-between">
+                <div class="d-flex align-items-center">
+                  <div class="col-auto primary-color ms-3 f-semibold">{{totalRows}} Items Found</div>
+                </div>
+                <div class="d-flex align-items-center me-5">
+                  <mat-paginator #paginator [length]="totalRows" [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 50]"
+                    showFirstLastButtons aria-label="Per page" class="f-14 bg-0" (page)="pageChanged($event)">
+                  </mat-paginator>
+                </div>
+              </div>
+            </div>
+            <div class="pagination-table">
+              <table mat-table matTableResponsive [dataSource]="dataSource" class="w-100">
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(element) : null"
+                      [checked]="selection.isSelected(element.select)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="alerts">
+                  <th mat-header-cell *matHeaderCellDef class="underlined">Class</th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-flex align-items-center">
+                      <mat-icon class="me-2"><span class="material-symbols-outlined bg-grey">
+                          attach_money
+                        </span></mat-icon>
+                      <mat-icon class="me-2"><span class="material-symbols-outlined bg-grey">
+                          sms
+                        </span></mat-icon>
+                      <mat-icon><span class="material-symbols-outlined bg-grey">
+                          info
+                        </span></mat-icon>
+                    </div>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="street_address">
+                  <th mat-header-cell *matHeaderCellDef>Vendor Name</th>
+                  <td mat-cell *matCellDef="let element"> <a routerLink="/portal/property/owned-property"
+                      routerLinkActive="active">
+                      {{ element.street_address }}
+                    </a></td>
+                </ng-container>
+
+                <ng-container matColumnDef="city_and_state">
+                  <th mat-header-cell *matHeaderCellDef>Phone</th>
+                  <td mat-cell *matCellDef="let element">{{ element.city_and_state }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="llc_name">
+                  <th mat-header-cell *matHeaderCellDef>Date of Last Payment</th>
+                  <td mat-cell *matCellDef="let element">{{ element.llc_name }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="rents">
+                  <th mat-header-cell *matHeaderCellDef>Rating</th>
+                  <td mat-cell *matCellDef="let element"><mat-icon class="bg-org"
+                      fontIcon="star "></mat-icon> 4.2(61)</td>
+                </ng-container>
+
+                <ng-container matColumnDef="property_status">
+                  <th mat-header-cell *matHeaderCellDef>Amount Owned</th>
+                  <td mat-cell *matCellDef="let element">{{ element.property_status }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="insured">
+                  <th mat-header-cell *matHeaderCellDef>Pay</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span><mat-icon class="me-2"><span class="bg-org">
+                      monetization_on
+                    </span></mat-icon></span>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns; let even = even" class="cursor-pointer"
+                  [ngClass]="{ even_rows: even }"></tr>
+              </table>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Insurance"> Insurance Content 3 </mat-tab>
+        <mat-tab label="Expenses"> Expenses Content 3 </mat-tab>
+        <mat-tab label="Projects"> Projects Content 3 </mat-tab>
+        <mat-tab label="History"> History Content 3 </mat-tab>
+        <mat-tab label="Reports"> Reports Content 3 </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+
+
+
+</div>

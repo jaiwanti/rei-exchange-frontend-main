@@ -1,0 +1,232 @@
+<div class="container py-3">
+  <div class="d-flex flex-md-row flex-column justify-content-between align-items-center">
+    <div class="main-heading mt-3 f-medium">
+      Portfolio
+      <span class="ms-2 underlined f-14 secondary-color cursor-pointer">
+        <a routerLink="/portal/property/add-property" routerLinkActive="active">
+          Add Property
+        </a></span>
+    </div>
+  </div>
+  <div class="row align-items-center my-3">
+    <div class="col-md-6 mb-2 mb-md-0">
+      <div class="search-input position-relative">
+        <button mat-icon-button class="d-flex" class="search-icon" type="submit">
+          <mat-icon><span class="material-symbols-outlined"> search </span></mat-icon>
+        </button>
+        <input type="text" class="form-control custom search-border" [formControl]="search"
+          placeholder="Search here..." />
+      </div>
+    </div>
+    <div class="col mb-2 mb-md-0 d-flex align-items-center ms-5">
+    </div>
+    <div class="row align-items-center my-2">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <div class="col-auto primary-color ms-3 f-semibold">{{totalRows}} Items Found</div>
+        </div>
+        <div class="d-flex align-items-center me-5">
+          <mat-paginator #paginator [length]="totalRows" [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 50]"
+            showFirstLastButtons aria-label="Per page" class="f-14 bg-0" (page)="pageChanged($event)">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+    <div class="pagination-table">
+      <table mat-table matTableResponsive [dataSource]="dataSource" class="w-100">
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <!-- <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox> -->
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null"
+              [checked]="selection.isSelected(element.select)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="alerts">
+          <th mat-header-cell *matHeaderCellDef class="underlined">Alerts</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center">
+              <mat-icon class="me-2"><span class="material-symbols-outlined bg-grey">
+                  attach_money
+                </span></mat-icon>
+              <mat-icon class="me-2"><span class="material-symbols-outlined bg-grey">
+                  sms
+                </span></mat-icon>
+              <mat-icon><span class="material-symbols-outlined bg-grey">
+                  info
+                </span></mat-icon>
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="street_address">
+          <th mat-header-cell *matHeaderCellDef>Address</th>
+          <td mat-cell *matCellDef="let element"> <a routerLink="/portal/property/owned-property"
+              routerLinkActive="active">
+              {{ element.street_address }}
+            </a></td>
+        </ng-container>
+
+        <ng-container matColumnDef="city_and_state">
+          <th mat-header-cell *matHeaderCellDef>City, ST</th>
+          <td mat-cell *matCellDef="let element">{{ element.city_and_state }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="llc_name">
+          <th mat-header-cell *matHeaderCellDef>L L C Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.llc_name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="rents">
+          <th mat-header-cell *matHeaderCellDef>Rents</th>
+          <td mat-cell *matCellDef="let element">{{ element.rents }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="property_status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">{{ element.property_status }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="insured">
+          <th mat-header-cell *matHeaderCellDef>Insured</th>
+          <td mat-cell *matCellDef="let element">
+            <span [ngClass]="element.gl  ? 'insured-green' : 'insured-red'">GL</span>
+            | <span [ngClass]="element.fire  ? 'insured-green' : 'insured-red'">Fire</span>
+            | <span [ngClass]="element.wind  ? 'insured-green' : 'insured-red'">Wind</span>
+            | <span [ngClass]="element.named_storm  ? 'insured-green' : 'insured-red'">N.Storm</span>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; let even = even" class="cursor-pointer"
+          [ngClass]="{ even_rows: even }"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container py-3">
+  <div class="d-flex flex-md-row flex-column justify-content-between align-items-center">
+    <div class="main-heading mt-3 f-medium">
+      Portfolio
+      <span class="ms-2 underlined f-14 secondary-color cursor-pointer">Add Property</span>
+    </div>
+  </div>
+  <div class="row align-items-center my-3">
+    <div class="col-md-6 mb-2 mb-md-0">
+      <div class="search-input position-relative">
+        <button mat-icon-button class="d-flex" class="search-icon" type="submit">
+          <mat-icon><span class="material-symbols-outlined"> search </span></mat-icon>
+        </button>
+        <input type="text" class="form-control custom search-border" placeholder="Search here..." />
+      </div>
+    </div>
+    <div class="col-auto mb-2 mb-md-0">
+      <button class="d-flex align-items-center py-2 px-3 border-1">
+        <mat-icon><span class="material-symbols-outlined"> filter_alt </span></mat-icon>
+        Filters
+      </button>
+    </div>
+    <div class="row align-items-center my-2">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <select class="py-2">
+            <option>Actions</option>
+            <option>List</option>
+            <option>Unlist</option>
+            <option>Compare (3 max)</option>
+            <option>Pull Comps</option>
+          </select>
+          <div class="col-auto primary-color ms-3 f-semibold">12 Items Found</div>
+        </div>
+        <div class="d-flex align-items-center me-5">
+          <mat-paginator #paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Per page" class="f-14 bg-0">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+    <div class="pagination-table">
+      <table mat-table matTableResponsive [dataSource]="dataSource" class="w-100">
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <input type="checkbox" (change)="$event ? toggleAllRows() : null"
+              [checked]="selection.hasValue() && isAllSelected()" class="ms-2"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [attr.aria-label]="checkboxLabel()" />
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <input type="checkbox" class="ms-2" />
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="alerts">
+          <th mat-header-cell *matHeaderCellDef class="underlined">Alerts</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center">
+              <mat-icon class="me-2"><span class="material-symbols-outlined bg-grey">
+                  attach_money
+                </span></mat-icon>
+              <mat-icon class="me-2"><span class="material-symbols-outlined bg-grey">
+                  sms
+                </span></mat-icon>
+              <mat-icon><span class="material-symbols-outlined bg-grey">
+                  info
+                </span></mat-icon>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="llc">
+          <th mat-header-cell *matHeaderCellDef class="underlined">LLC name</th>
+          <td mat-cell *matCellDef="let element">{{ element.llc }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef>Address</th>
+          <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef>City,ST</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.city ?? "-" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.status ?? "-" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rents">
+          <th mat-header-cell *matHeaderCellDef>Rents</th>
+          <td mat-cell *matCellDef="let element">
+            <div [ngClass]="{
+                  'red': element.rents === 'Late',
+                  'green': element.rents === 'Current',
+                  'secondary-color': element.rents === 'Now Due'
+                }">
+              {{ element?.rents }}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="listed">
+          <th mat-header-cell *matHeaderCellDef>Listed</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-slide-toggle (click)="$event.stopPropagation()"></mat-slide-toggle>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; let even = even" class="cursor-pointer"
+          [ngClass]="{ even_rows: even }"></tr>
+      </table>
+    </div>
+  </div>
+</div> -->

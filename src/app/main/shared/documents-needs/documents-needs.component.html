@@ -1,0 +1,27 @@
+<div class="card container">
+
+  <div class="main-heading secondary-color mt-3 f-medium">
+    Documents Needed:
+  </div>
+  <div *ngFor="let item of items; let i = index" class="row">
+    <div class="col-md-4">
+      <span class="secondary-color">{{item.name}}</span>
+    </div>
+    <div class="col-md-8">
+      <mat-form-field floatPlaceholder="never">
+        <input [hidden]="true" (change)="onFileSelect($event,i)" type="file" accept="all/*" #fileSelect>
+        <input readonly matInput [value]="item.file" placeholder="Select file..." />
+        <button *ngIf="item.file" (click)="item.file = '';" matSuffix matTooltip="Remove selected file"
+          [matTooltipPosition]="'above'" type="button" color="warn" mat-icon-button>
+          <mat-icon>close</mat-icon>
+        </button>
+        <button matSuffix mat-icon-button (click)="fileSelect.click();" matTooltip="Select a file"
+          [matTooltipPosition]="'above'">
+          <mat-icon>file_upload</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- <div class="col-md-4"></div>
+      <div class="col-md-8 secondary-color">Add additional Misc field</div> -->
+</div>

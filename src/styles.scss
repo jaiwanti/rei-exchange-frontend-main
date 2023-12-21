@@ -1,0 +1,315 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '/src/assets/scss/colors.scss';
+@import '@angular/material/theming';
+
+@font-face {
+  font-family: "f-bold";
+  src: url("./assets/fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+  font-family: "f-semibold";
+  src: url("./assets/fonts/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "f-regular";
+  src: url("./assets/fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: "f-medium";
+  src: url("./assets/fonts/Montserrat-Medium.ttf");
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 15px !important;
+  font-family: "f-regular" !important;
+  color: #000 !important;
+
+  @media screen and (max-width: 768px) {
+    font-size: 13px;
+  }
+}
+
+.f-bold {
+  font-family: "f-bold";
+}
+
+.f-semibold {
+  font-family: "f-semibold";
+}
+
+.f-medium {
+  font-family: "f-medium";
+}
+
+.f-regular {
+  font-family: "f-regular";
+}
+
+.main-heading {
+  color: #1f262c;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.f-15 {
+  font-size: 15px;
+}
+
+.f-14 {
+  font-size: 14px;
+}
+
+.f-18 {
+  font-size: 18px;
+}
+
+.f-16 {
+  font-size: 16px;
+}
+
+.form-control.custom {
+  height: 45px;
+  border-radius: 5px;
+  border: 0.15rem solid #e4e4e4;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.form-control.custom:focus {
+  box-shadow: none;
+  background-color: #f6f7f5;
+  border: 0.15rem solid #e4e4e4;
+  opacity: 100%;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: whitesmoke;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: LightGray;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: Silver;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  min-width: 160px;
+  border: 2px solid transparent;
+  background-color: #496c80;
+  color: #fff;
+  font-weight: 500;
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  min-width: 160px;
+  border: 2px solid transparent;
+  background-color: #dbdbdd;
+  color: black;
+  font-weight: 500;
+}
+
+.error-message {
+  font-size: 13px;
+  color: #e2422a !important;
+  padding-top: 5px;
+}
+
+.primary-color {
+  color: $theme-primary;
+}
+
+.secondary-color {
+  color: $theme-secondary;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.footer {
+  background-color: $theme-secondary;
+  position: absolute;
+  bottom: 0;
+  min-width: -webkit-fill-available;
+  left: 0;
+}
+
+.header {
+  background-color: $theme-secondary;
+  position: absolute;
+  top: 0;
+  min-width: -webkit-fill-available;
+  left: 0;
+}
+
+.search-input .search-icon {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-border {
+  border: 1px solid #8b8e93;
+}
+
+.bg-0 {
+  background: none;
+}
+
+.mat-mdc-slide-toggle.mat-accent {
+  --mdc-switch-selected-focus-state-layer-color: #495f39;
+  --mdc-switch-selected-handle-color: #495f39;
+  --mdc-switch-selected-hover-state-layer-color: #495f39;
+  --mdc-switch-selected-pressed-state-layer-color: #495f39;
+  --mdc-switch-selected-focus-handle-color: #495f39;
+  --mdc-switch-selected-hover-handle-color: #495f39;
+  --mdc-switch-selected-pressed-handle-color: #495f39;
+  --mdc-switch-selected-focus-track-color: #eaeaea;
+  --mdc-switch-selected-hover-track-color: #eaeaea;
+  --mdc-switch-selected-pressed-track-color: #eaeaea;
+  --mdc-switch-selected-track-color: #eaeaea;
+}
+
+.pagination-table {
+  ::ng-deep .mat-mdc-slide-toggle .mdc-switch {
+    width: 75px;
+  }
+
+
+
+  ::ng-deep .mat-mdc-slide-toggle .mdc-switch .mdc-switch__track {
+    height: 27px !important;
+    border-radius: 15px !important;
+    border: 1px solid #27a643;
+  }
+
+  ::ng-deep .mat-mdc-slide-toggle .mdc-switch:enabled .mdc-switch__shadow {
+    background-color: #27a643;
+  }
+
+  ::ng-deep .mdc-switch__handle {
+    left: 4px !important;
+  }
+
+  ::ng-deep .mat-mdc-slide-toggle .mdc-switch .mdc-switch__handle-track {
+    width: calc(88% - var(--mdc-switch-handle-width, 28px)) !important;
+  }
+
+}
+
+thead,
+th {
+  white-space: nowrap;
+  color: #fff;
+  background-color: #43484e !important;
+  font-family: 'f-medium';
+}
+
+table {
+  border: 1px solid #43484e42;
+}
+
+.even_rows {
+  background-color: #f5f5f5;
+}
+
+.bg-grey {
+  color: grey;
+}
+
+.red {
+  color: #fff;
+  background-color: #d50e15;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.green {
+  color: #27a643;
+}
+
+.newSignUpHeading {
+  color: #bf8718;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.newSignUpHeadingInvestor {
+  color: black;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.custom-input {
+  margin-right: 10px;
+  height: 80% !important;
+  /* Adjust spacing between input fields as needed */
+  flex: 1;
+  /* This makes the input fields share the available space equally */
+}
+
+.golden {
+  color: #bf8718;
+  font-weight: 900;
+}
+
+.focus {
+  background-color: #b1afabba;
+  padding-top: 15px;
+}
+
+.input-label {
+  font-size: 12px;
+  padding-left: 5px;
+}
+
+.mat-mdc-form-field-error {
+  font-size: 14px;
+  padding-left: 5px;
+}
+
+@include mat-core();
+
+$primary: mat-palette($mat-blue, 200);
+$dark-accent: mat-palette($mat-orange, 300);
+
+$theme: mat-light-theme($primary, $dark-accent);
+@include angular-material-theme($theme);

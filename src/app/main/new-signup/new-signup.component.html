@@ -1,0 +1,373 @@
+<div class="container py-2 new-signup">
+    <div class="col-md-12 login-form ps-3 mt-4 ">
+        <div *ngIf="nextStep < 9" class="newSignUpHeading ps-3">
+            Let's get you set up by <span class="newSignUpHeadingInvestor">{{this.signupSubHeading}}.</span>
+        </div>
+        <div class="main-heading ps-3 mt-3 f-medium">
+            {{this.mainHeading}} <span class="golden"> {{this.subHeading}}</span>
+            <!-- <button (click)="openDialog()" class="secondary-button w-20"> Open Dialog </button> -->
+        </div>
+        <br>
+        <form [formGroup]="newSignUpForm">
+            <div *ngIf="nextStep == 0 || nextStep == 1" [ngClass]="{'focus': this.nextStep === 0}">
+                <div class="input-row ps-3 ">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="email" class="form-control custom" formControlName="first_name" />
+                            <div class="input-label">First Name *</div>
+                            <mat-error
+                                *ngIf="newSignUpForm.controls['first_name'].hasError('required') && newSignUpForm.controls['first_name'].touched">
+                                First Name is required.
+                            </mat-error>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="email" class="form-control custom" formControlName="lastname" />
+                            <div class="input-label">Last Name *</div>
+                            <mat-error
+                                *ngIf="newSignUpForm.controls['lastname'].hasError('required') && newSignUpForm.controls['lastname'].touched">
+                                Last Name is required.
+                            </mat-error>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input class="form-control custom" formControlName="phone_number" mask="(000) 000-0000" />
+                            <div class="input-label">Main Phone Number*</div>
+                            <mat-error
+                                *ngIf="newSignUpForm.controls['phone_number'].hasError('required') && newSignUpForm.controls['phone_number'].touched">
+                                Main Phone Number is required.
+                            </mat-error>
+                            <mat-error *ngIf="newSignUpForm.controls['phone_number'].hasError('pattern')">
+                                Main Phone Number is invalid.
+                            </mat-error>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control custom" type="email" formControlName="email_address" />
+                            <div class="input-label">Email Address*</div>
+                            <mat-error
+                                *ngIf="newSignUpForm.controls['email_address'].hasError('required') && newSignUpForm.controls['email_address'].touched">
+                                Email Address is required.
+                            </mat-error>
+                            <mat-error *ngIf="newSignUpForm.controls['email_address'].hasError('pattern')">
+                                Email Address is invalid.
+                            </mat-error>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input class="form-control custom" formControlName="password"
+                                [type]="hide ? 'password' : 'text'" />
+                            <!-- <mat-icon class="placeholder" (click)="showHidePassword()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+                            <div class="input-label">Password*</div>
+                            <mat-error
+                                *ngIf="newSignUpForm.controls['password'].hasError('required') && newSignUpForm.controls['password'].touched">
+                                Password is required.
+                            </mat-error>
+                            <mat-error *ngIf="newSignUpForm.controls['password'].hasError('minlength')">
+                                Password should be longer than 8 characters!
+                            </mat-error>
+                            <mat-error *ngIf="newSignUpForm.controls['password'].hasError('maxlength')">
+                                Password can't be longer than 20 characters!
+                            </mat-error>
+                            <mat-error *ngIf="newSignUpForm.hasError('notSame')">
+                                Password mismatch!
+                            </mat-error>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control custom" type="password" formControlName="confirm_password" />
+                            <div class="input-label">Confirm Password*</div>
+                            <mat-error
+                                *ngIf="newSignUpForm.controls['confirm_password'].hasError('required') && newSignUpForm.controls['confirm_password'].touched">
+                                Confirm Password is required.
+                            </mat-error>
+                            <mat-error *ngIf="newSignUpForm.controls['confirm_password'].hasError('minlength')">
+                                Password should be longer than 8 characters!
+                            </mat-error>
+                            <mat-error *ngIf="newSignUpForm.controls['confirm_password'].hasError('maxlength')">
+                                Password can't be longer than 20 characters!
+                            </mat-error>
+                            <mat-error *ngIf="newSignUpForm.hasError('notSame')">
+                                Password mismatch!
+                            </mat-error>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="LLCsForm">
+            <div [ngClass]="{'focus': this.nextStep === 1}">
+                <div *ngIf="nextStep == 1" class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input formControlName="name" class="form-control custom" />
+                            <div class="input-label">LLC Name (if none, leave blank)</div>
+                        </div>
+                        <!-- <div class="col-md-1">
+                            <mat-icon (click)="addNewRowForLLC()">add_circle_outline</mat-icon>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="lendingInstitutionForm">
+            <div *ngIf="nextStep == 2 || nextStep == 3" [ngClass]="{'focus': this.nextStep === 2}">
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input formControlName="institution_name" class="form-control custom">
+                            <div class="input-label">Lending Institution Name</div>
+                        </div>
+                        <div class="col-md-3">
+                            <input formControlName="officer_name" class="form-control custom">
+                            <div class="input-label">Lending Officer Name</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input formControlName="phone_number" class="form-control custom" mask="(000) 000-0000" />
+                            <div class="input-label">Lending Institution Phone Number</div>
+                            <mat-error *ngIf="lendingInstitutionForm.controls['phone_number'].hasError('pattern')">
+                                Lending Institution Phone Number is invalid.
+                            </mat-error>
+                        </div>
+                        <div class="col-md-3">
+                            <input formControlName="email_address" class="form-control custom">
+                            <div class="input-label">Lending Institution Email Address</div>
+                            <mat-error *ngIf="lendingInstitutionForm.controls['email_address'].hasError('pattern')">
+                                Lending Institution Email Address is invalid.
+                            </mat-error>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="insuranceAgencyForm">
+            <div *ngIf="nextStep == 3" [ngClass]="{'focus': this.nextStep === 3}">
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input formControlName="agency_name" class="form-control custom">
+                            <div class="input-label">Insurance Agency Name</div>
+                        </div>
+                        <div class="col-md-3">
+                            <input formControlName="agent_name" class="form-control custom">
+                            <div class="input-label">Insurance Agent Name</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input formControlName="phone_number" class="form-control custom" mask="(000) 000-0000" />
+                            <div class="input-label">Insurance Agency Phone Number</div>
+                            <mat-error *ngIf="insuranceAgencyForm.controls['phone_number'].hasError('pattern')">
+                                Insurance Agency Phone Number is invalid.
+                            </mat-error>
+                        </div>
+                        <div class="col-md-3">
+                            <input formControlName="email_address" type="email" class="form-control custom">
+                            <div class="input-label">Insurance Agency Email Address</div>
+                            <mat-error *ngIf="insuranceAgencyForm.controls['email_address'].hasError('pattern')">
+                                Insurance Agency Email Address is invalid.
+                            </mat-error>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="propertyDetailsForm">
+            <div *ngIf="nextStep > 3 && nextStep != 9" [ngClass]="{'focus': this.nextStep === 4}">
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input class="form-control custom" formControlName="street_address">
+                            <div class="input-label">Street Address*</div>
+                            <mat-error
+                                *ngIf="propertyDetailsForm.controls['street_address'].hasError('required') && propertyDetailsForm.controls['street_address'].touched">
+                                Street Address is required.
+                            </mat-error>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control custom" formControlName="zip_code">
+                            <div class="input-label">Zip Code*</div>
+                            <mat-error
+                                *ngIf="propertyDetailsForm.controls['zip_code'].hasError('required') && propertyDetailsForm.controls['zip_code'].touched">
+                                Zip Code is required.
+                            </mat-error>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control custom" formControlName="city">
+                            <div class="input-label">City*</div>
+                            <mat-error
+                                *ngIf="propertyDetailsForm.controls['city'].hasError('required') && propertyDetailsForm.controls['city'].touched">
+                                City is required.
+                            </mat-error>
+                        </div>
+                        <div class="col-md-1">
+                            <input class="form-control custom" formControlName="state">
+                            <div class="input-label">State*</div>
+                            <mat-error
+                                *ngIf="propertyDetailsForm.controls['state'].hasError('required') && propertyDetailsForm.controls['state'].touched">
+                                City is required.
+                            </mat-error>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="nextStep > 4 && nextStep != 9" [ngClass]="{'focus': this.nextStep === 5}">
+                <div class="input-row ps-3">
+                    <form [formGroup]="LLCsForm">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <input formControlName="name" class="form-control custom" />
+                                <div class="input-label">LLC it's under, if applicable</div>
+                            </div>
+                            <div class="col-md-5 pt-3">
+                                To add an LLC not on your list, simply type it in.
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div *ngIf="nextStep > 5 && nextStep < 9" [ngClass]="{'focus': this.nextStep === 6}">
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <mat-select formControlName="occupancy_type_id" class="form-control custom">
+                                <mat-option *ngFor="let element of occupancy_type" [value]="element.id">
+                                    {{element.name}}
+                                </mat-option>
+                            </mat-select>
+                            <div class="input-label">Occupancy Type</div>
+                            <mat-error
+                                *ngIf="propertyDetailsForm.controls['occupancy_type_id'].hasError('required') && propertyDetailsForm.controls['occupancy_type_id'].touched">
+                                Occupancy Type is required.
+                            </mat-error>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control custom" formControlName="no_of_units" type="number">
+                            <div class="input-label"># of Units</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="nextStep > 6 && nextStep != 9" [ngClass]="{'focus': this.nextStep === 7}">
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="row mb-2">
+                            <div class="col-md-2">
+                                Is it currently insured?
+                            </div>
+                            <div class="col-md-1">
+                                <mat-slide-toggle formControlName="isCurrentlyInsured"
+                                    (change)="currentlyInsured($event)">
+                                </mat-slide-toggle>
+                            </div>
+                            <div *ngIf="this.propertyDetailsForm.value.isCurrentlyInsured" class="col-md-8">
+                                For:
+                                <mat-checkbox formControlName="gl" class="example-margin">GL</mat-checkbox>
+                                <mat-checkbox formControlName="fire" class="example-margin">Fire</mat-checkbox>
+                                <mat-checkbox formControlName="wind" class="example-margin">Wind</mat-checkbox>
+                                <mat-checkbox formControlName="named_storm" class="example-margin">Named
+                                    Storm</mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="this.propertyDetailsForm.value.isCurrentlyInsured" class="input-row ps-3">
+                    <form [formGroup]="insuranceAgencyForm">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <input formControlName="agency_name" class="form-control custom" />
+                                <div class="input-label">Insurance Agency Used*</div>
+                                <mat-error
+                                    *ngIf="insuranceAgencyForm.controls['agency_name'].hasError('required') && insuranceAgencyForm.controls['agency_name'].touched">
+                                    Insurance Agency required.
+                                </mat-error>
+                            </div>
+                            <div class="col-md-5 pt-3">
+                                To add an LLC not on your list, simply type it in.
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div *ngIf="nextStep > 7 && nextStep != 9" [ngClass]="{'focus': this.nextStep === 8}">
+                <div class="input-row ps-3">
+                    <div class="row">
+                        <div class="col-md-2">
+                            Was it financed?
+                        </div>
+                        <div class="col-md-1">
+                            <mat-slide-toggle formControlName="isWasItFinanced" class="example-margin"
+                                (change)="wasItFinanced($event)">
+                            </mat-slide-toggle>
+                        </div>
+                        <div *ngIf="this.propertyDetailsForm.value.isWasItFinanced" class="col-md-6">
+                            <form [formGroup]="lendingInstitutionForm">
+                                <input formControlName="institution_name" class="form-control custom" />
+                                <div class="input-label">Lending Institution*</div>
+                                <mat-error
+                                    *ngIf="lendingInstitutionForm.controls['institution_name'].hasError('required') && lendingInstitutionForm.controls['institution_name'].touched">
+                                    Lending Institution required.
+                                </mat-error>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div *ngIf="nextStep == 9">
+            <div class="input-row ps-3">
+                <div class="row">
+                    <div class="row mb-2">
+                        <div class="col-md-2">
+                            <span class="golden"> Add your next one? </span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input-row ps-3">
+            <div class="row pt-2">
+                <div class="col-md-2">
+                    <button *ngIf="nextStep < 9" (click)="continue()" [disabled]="newSignUpForm.invalid"
+                        class="secondary-button w-20">
+                        Continue
+                        <mat-icon>keyboard_arrow_down</mat-icon></button>
+                    <button *ngIf="nextStep == 9" class="secondary-button">
+                        Yes</button>
+
+                </div>
+                <div *ngIf="nextStep == 9" class="col-md-2">
+                    <button (click)="openProperty()" class="secondary-button w-20">
+                        Not Right Now</button>
+                </div>
+                <div class="col-md-2" *ngIf="nextStep == 2 || nextStep == 3">
+                    <button (click)="continue(true)" [disabled]="newSignUpForm.invalid" class="secondary-button"> Skip
+                        <mat-icon>keyboard_arrow_down</mat-icon></button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="this.nextStep > 3" class="ps-3">
+            <div class="row">
+                <div class="col-md-6">
+                    To add bulk properties, <a (click)="openProperty()"> Click Here.</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

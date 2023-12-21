@@ -1,0 +1,154 @@
+<div id="signin" class="d-flex h-100">
+  <div class="container-fluid">
+    <div class="row h-100">
+      <div class="col-md-3 bg-login position-relative">
+        <div class="d-flex flex-column justify-content-end">
+          <img src="../../../assets/images/REI Logo 2.png" class="img-fluid logo" />
+          <div class=" me-2 logo-txt">
+            A free real estate investor's portfolio management suite and portal
+            for buying and selling properties.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 position-relative">
+        <div class="header p-3"></div>
+        <div class="row d-flex align-items-center h-100">
+          <div class="col-md-6 login-form border-login pe-4">
+            <div class="d-flex flex-column">
+              <div class="login-heading mb-4">Investor Log In</div>
+            </div>
+            <form [formGroup]="signInForm" (ngSubmit)="onSubmit(signInForm)">
+              <div class="form-group mb-3">
+                <input type="email" class="form-control custom" placeholder="Username" formControlName="username" />
+                <mat-error class="error-message"
+                  *ngIf="signInForm.controls['username'].hasError('required') && signInForm.controls['username'].touched">
+                  Username is required.
+                </mat-error>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control custom" placeholder="Password" formControlName="password" />
+                <mat-error class="error-message"
+                  *ngIf="signInForm.controls['password'].hasError('required') && signInForm.controls['password'].touched">
+                  Password is required.
+                </mat-error>
+              </div>
+              <div class="my-4">
+                <button type="submit" class="primary-button w-100 mb-1" [disabled]="signInForm.invalid">Log in</button>
+                <div><a>Forgot password?</a></div>
+              </div>
+            </form>
+          </div>
+          <!-- <div class="col-md-6 login-form ps-4 mt-5">
+            <div class="d-flex flex-column">
+              <div class="login-heading mb-4 mt-5">
+                Sign up to request access
+              </div>
+            </div>
+            <form [formGroup]="signUpForm">
+              <div class="form-group mb-3">
+                <input type="text" class="form-control custom" placeholder="First Name" formControlName="first_name" />
+                <mat-error class="error-message"
+                  *ngIf="signUpForm.controls['first_name'].hasError('required') && signUpForm.controls['first_name'].touched">
+                  First Name is required.
+                </mat-error>
+              </div>
+              <div class="form-group mb-3">
+                <input type="text" class="form-control custom" placeholder="Last Name" formControlName="lastname" />
+                <mat-error class="error-message"
+                  *ngIf="signUpForm.controls['lastname'].hasError('required') && signUpForm.controls['lastname'].touched">
+                  Last Name is required.
+                </mat-error>
+              </div>
+              <div class="form-group mb-3">
+                <input matInput formControlName="phone_number" class="form-control custom" placeholder="Phone Number"
+                  prefix="+1" mask="(000) 000-0000" />
+                <mat-error class="error-message"
+                  *ngIf="signUpForm.controls['phone_number'].hasError('required') && signUpForm.controls['phone_number'].touched">
+                  Phone Number is required.
+                </mat-error>
+                <mat-error class="error-message" *ngIf="signUpForm.controls['phone_number'].hasError('pattern')">
+                  Phone Number is invalid.
+                </mat-error>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control custom" placeholder="Email Address"
+                  formControlName="email_address" />
+                <mat-error class="error-message"
+                  *ngIf="signUpForm.controls['email_address'].hasError('required') && signUpForm.controls['email_address'].touched">
+                  Email Address is required.
+                </mat-error>
+                <mat-error class="error-message" *ngIf="signUpForm.controls['email_address'].hasError('pattern')">
+                  Email Address is invalid.
+                </mat-error>
+              </div>
+            </form>
+            <div class="my-4">
+              <button class="primary-button w-100 mb-1" (click)="addUser()"
+                [disabled]="signUpForm.invalid">Next</button>
+            </div>
+          </div> -->
+          <div class="col-md-6 login-form ps-4 mt-5">
+            <div class="d-flex flex-column">
+              <div class="login-heading mb-4 mt-5">
+                Don't have an account?
+              </div>
+            </div>
+            <!-- <form [formGroup]="signUpForm">
+              <div class="form-group mb-3">
+                <input type="text" class="form-control custom" placeholder="First Name" formControlName="first_name" />
+                <mat-error class="error-message"
+                  *ngIf="signUpForm.controls['first_name'].hasError('required') && signUpForm.controls['first_name'].touched">
+                  First Name is required.
+                </mat-error>
+              </div>
+              <div class="form-group mb-3">
+                <input type="text" class="form-control custom" placeholder="Last Name" formControlName="lastname" />
+                <mat-error class="error-message"
+                  *ngIf="signUpForm.controls['lastname'].hasError('required') && signUpForm.controls['lastname'].touched">
+                  Last Name is required.
+                </mat-error>
+              </div>
+              <div class="form-group mb-3">
+                <input matInput formControlName="phone_number" class="form-control custom" placeholder="Phone Number"
+                  prefix="+1" mask="(000) 000-0000" />
+                <mat-error class="error-message"
+                  *ngIf="signUpForm.controls['phone_number'].hasError('required') && signUpForm.controls['phone_number'].touched">
+                  Phone Number is required.
+                </mat-error>
+                <mat-error class="error-message" *ngIf="signUpForm.controls['phone_number'].hasError('pattern')">
+                  Phone Number is invalid.
+                </mat-error>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control custom" placeholder="Email Address"
+                  formControlName="email_address" />
+                <mat-error class="error-message"
+                  *ngIf="signUpForm.controls['email_address'].hasError('required') && signUpForm.controls['email_address'].touched">
+                  Email Address is required.
+                </mat-error>
+                <mat-error class="error-message" *ngIf="signUpForm.controls['email_address'].hasError('pattern')">
+                  Email Address is invalid.
+                </mat-error>
+              </div>
+            </form> -->
+            <div class="my-4">
+              <button class="primary-button w-100 mb-1" routerLink="/portal/new-signup">Create One</button>
+            </div>
+          </div>
+        </div>
+        <div class="footer p-2">
+          <div class="d-flex flex-md-row flex-column align-items-center justify-content-center">
+            <div class="border-end text-white pe-3">Copyright 2023</div>
+            <div class="text-white ms-3">
+              Privacy Policy <span class="mx-2">-</span>
+            </div>
+            <div class="text-white ms-2">
+              Disclaimers <span class="mx-2">-</span>
+            </div>
+            <div class="text-white ms-2">Contact</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

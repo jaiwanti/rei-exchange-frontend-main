@@ -1,0 +1,101 @@
+<mat-drawer-container>
+  <mat-drawer position="start" class="shadow-sm left-drawer" [opened]="isDrawerOpen" #drawer [mode]="dynamicMode">
+    <div class="vh-100 vh-100 d-flex flex-column">
+      <div class="d-flex justify-content-center align-items-center pb-2 d-block mt-2">
+        <img src="../.././../../assets/images/REI Logo.png" class="logo img-fluid" alt="logo" />
+      </div>
+      <div class="overflow-auto">
+        <div class="side-menu main">
+          <div class="main-menu">
+            <a>
+              <div class="user-name no-cursor">{{this.userName}}.</div>
+            </a>
+          </div>
+        </div>
+        <div *ngIf="!isNewSignup">
+          <div class="side-menu main">
+            <div class="main-menu">
+              <a>
+                <div class="text-white">Messages & Alerts</div>
+              </a>
+            </div>
+          </div>
+          <div class="side-menu main">
+            <div class="main-menu">
+              <div class="text-white text-end me-3 my-1">Portfolio</div>
+              <a routerLink="/portal/property" routerLinkActive="active">
+                <div>Owned Properties</div>
+              </a>
+              <a routerLinkActive="active">
+                <div>Not Yet Closed</div>
+              </a>
+            </div>
+          </div>
+          <div class="side-menu main">
+            <div class="main-menu">
+              <div class="text-white text-end me-3 my-1">Add Properties</div>
+              <a routerLink="/portal/property/add-property" routerLinkActive="active">
+                <div>Add an Owned Property</div>
+              </a>
+              <a routerLink="/portal/property/add-property" routerLinkActive="active">
+                <div>New Purchase Assistant</div>
+              </a>
+            </div>
+          </div>
+          <div class="side-menu main">
+            <div class="main-menu">
+              <a>
+                <div class="text-white">Vendors</div>
+              </a>
+            </div>
+          </div>
+          <div class="side-menu main">
+            <div class="main-menu">
+              <a>
+                <div class="text-white">Billing / Payments / Rent</div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="side-menu main">
+          <div class="main-menu">
+            <div class="text-white text-end me-3 my-1">Account</div>
+            <a routerLinkActive="active">
+              <div>Personal Info</div>
+            </a>
+            <a routerLink="/portal/user" routerLinkActive="active">
+              <div>User</div>
+            </a>
+            <a routerLinkActive="active">
+              <div>Preferences</div>
+            </a>
+            <a routerLinkActive="active">
+              <div>History</div>
+            </a>
+            <a (click)="logout()" routerLinkActive="active">
+              <div>Logout</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content class="position-relative">
+    <div class="main">
+      <div class="header p-3"></div>
+      <router-outlet></router-outlet>
+      <div class="footer p-2">
+        <div class="d-flex flex-md-row flex-column align-items-center justify-content-center">
+          <div class="border-end text-white pe-3">Copyright 2023</div>
+          <div class="text-white ms-3">
+            Privacy Policy <span class="mx-2">-</span>
+          </div>
+          <div class="text-white ms-2">
+            Disclaimers <span class="mx-2">-</span>
+          </div>
+          <div class="text-white ms-2">Contact</div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
